@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c61q04ltjst3e"]
+[gd_scene load_steps=6 format=3 uid="uid://c61q04ltjst3e"]
 
-[ext_resource type="PackedScene" uid="uid://b2pduacqa5chb" path="res://Scenes/floor_button.tscn" id="1_elu03"]
 [ext_resource type="PackedScene" uid="uid://chu3w3ioc6jvo" path="res://Scenes/characters/MainCharacter.tscn" id="1_jhwud"]
 [ext_resource type="Script" path="res://scripts/MainCharacter.gd" id="2_40c37"]
-[ext_resource type="PackedScene" uid="uid://phewxkylqnso" path="res://Scenes/door.tscn" id="2_wbrql"]
 [ext_resource type="PackedScene" uid="uid://bfui2hjydd0i0" path="res://Scenes/OceanMap.tscn" id="3_5qnfl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_knu02"]
@@ -11,10 +9,6 @@ size = Vector3(22, 1, 33)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mk1de"]
 size = Vector3(22, 1, 33)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_5m4hp"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_8hiu5"]
 
 [node name="Main" type="Node3D"]
 
@@ -27,15 +21,8 @@ shape = SubResource("BoxShape3D_knu02")
 mesh = SubResource("BoxMesh_mk1de")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="FloorButton" parent="StaticBody3D" instance=ExtResource("1_elu03")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73567, 0.650289, 5.35564)
-
-[node name="Door" parent="StaticBody3D" instance=ExtResource("2_wbrql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 2)
-connected_button = NodePath("../FloorButton")
-
 [node name="MainCharacter" parent="." instance=ExtResource("1_jhwud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29414, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.29704, 0)
 script = ExtResource("2_40c37")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="MainCharacter"]
@@ -47,13 +34,3 @@ transform = Transform3D(1, 0, 0, 0, 0.998532, 0.054166, 0, -0.054166, 0.998532, 
 
 [node name="OceanMap" parent="." instance=ExtResource("3_5qnfl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.33327, 0)
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08418, 1, 5.06247)
-mass = 0.2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("SphereShape3D_5m4hp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("SphereMesh_8hiu5")

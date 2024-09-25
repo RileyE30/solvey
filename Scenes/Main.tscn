@@ -28,9 +28,5 @@ script = ExtResource("2_40c37")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="MainCharacter"]
 transform = Transform3D(1, 0, 0, 0, 0.998532, 0.054166, 0, -0.054166, 0.998532, -17.0754, 127.629, -213.524)
 
-[node name="Head" type="Node3D" parent="MainCharacter"]
-
-[node name="Camera3D" type="Camera3D" parent="MainCharacter/Head"]
-
 [node name="OceanMap" parent="." instance=ExtResource("3_5qnfl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.33327, 0)

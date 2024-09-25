@@ -18,10 +18,14 @@ func _on_button_released():
 	
 func open_door():
 	# Your code to open the door
+	$CollisionShape3D.disabled = true
+	$MeshInstance3D.visible = false
 	print("Open")
 
 func close_door():
 	# Your code to close the door
+	$CollisionShape3D.disabled = false
+	$MeshInstance3D.visible = true
 	print("closed")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://phewxkylqnso"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_twj1p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lvib5"]
+size = Vector3(1.64, 2.85, 0.19)
+
+[sub_resource type="BoxMesh" id="BoxMesh_igxit"]
+size = Vector3(1.64, 2.85, 0.19)
+
+[node name="Door" type="StaticBody3D"]
+script = ExtResource("1_twj1p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_lvib5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_igxit")

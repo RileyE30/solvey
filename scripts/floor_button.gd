@@ -1,7 +1,7 @@
 extends Area3D
 
-signal button_pressed
-signal button_released
+signal T
+signal F
 
 var is_pressed = false
 
@@ -13,7 +13,7 @@ func _ready():
 func _on_body_entered(body):
 	if not is_pressed:
 		is_pressed = true
-		emit_signal("button_pressed")
+		emit_signal("T")
 		# Optional: Animate the button being pressed down
 		_animate_button(true)
 		print("Pushed")
@@ -22,7 +22,7 @@ func _on_body_exited(body):
 	# Check if there are still bodies on the button
 	if $Area3D.get_overlapping_bodies().size() == 0:
 		is_pressed = false
-		emit_signal("button_released")
+		emit_signal("F")
 		# Optional: Animate the button returning to original position
 		_animate_button(false)
 		print("Released")

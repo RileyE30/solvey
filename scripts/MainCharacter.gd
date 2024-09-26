@@ -44,6 +44,18 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if Input.is_action_just_pressed("interact"):
+		var cast = self.get_node("Head/RayCast3D")
+		var collidingObject = cast.get_collider()
+		if collidingObject:
+			print(collidingObject.name)
+			if collidingObject.name == "Lever":
+				
+				print("playing animation")
+				var animation = collidingObject.get_node("LeverAnchor/AnimationPlayer")
+				animation.play("lever_down")
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

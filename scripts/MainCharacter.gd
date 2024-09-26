@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 @onready var head: Node3D = $Head
-
 const WALKSPEED = 5.0
 const RUNSPEED = 10.0
 const JUMP_VELOCITY = 4.5

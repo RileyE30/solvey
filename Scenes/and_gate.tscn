@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1kc5aw3squq"]
+
+[ext_resource type="Script" path="res://scripts/and_gate.gd" id="1_1fd1x"]
+
+[node name="ANDGate" type="Node"]
+script = ExtResource("1_1fd1x")

@@ -7,8 +7,8 @@ var button
 func _ready() -> void:
 	if connected_button:
 		button = get_node(connected_button)
-		button.button_pressed.connect(_on_button_pressed)
-		button.button_released.connect(_on_button_released)	
+		button.T.connect(_on_button_pressed)
+		button.F.connect(_on_button_released)	
 
 func _on_button_pressed():
 	open_door()

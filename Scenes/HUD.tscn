@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0178x6xyxo0t"]
+
+[ext_resource type="Texture2D" uid="uid://dbj8ro32ar5es" path="res://ui/crosshair.png" id="1_fb5xr"]
+[ext_resource type="Script" path="res://scripts/Crosshair.gd" id="2_dn13h"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+texture = ExtResource("1_fb5xr")
+expand_mode = 1
+script = ExtResource("2_dn13h")

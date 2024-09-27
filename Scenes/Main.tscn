@@ -7,29 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://bfui2hjydd0i0" path="res://Scenes/OceanMap.tscn" id="3_5qnfl"]
 [ext_resource type="PackedScene" path="res://Scenes/and_gate.tscn" id="5_eprmo"]
 [ext_resource type="PackedScene" path="res://Scenes/timed_button.tscn" id="6_qblcy"]
-[ext_resource type="Texture2D" uid="uid://dbj8ro32ar5es" path="res://ui/crosshair.png" id="8_upwpi"]
-[ext_resource type="Script" path="res://scripts/crosshair.gd" id="9_jg6p2"]
-[ext_resource type="PackedScene" uid="uid://50w48xddlcly" path="res://Scenes/lever.tscn" id="10_xic11"]
+[ext_resource type="Script" path="res://scripts/LeverDoor.gd" id="8_fwtbc"]
+[ext_resource type="PackedScene" uid="uid://d0178x6xyxo0t" path="res://Scenes/HUD.tscn" id="8_g2pko"]
+[ext_resource type="Script" path="res://scripts/InteractableLever.gd" id="10_q5vk1"]
+[ext_resource type="PackedScene" uid="uid://dr2tw2cyre6kg" path="res://Scenes/lever.tscn" id="10_xic11"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_knu02"]
 size = Vector3(22, 1, 33)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mk1de"]
 size = Vector3(22, 1, 33)
-
-[sub_resource type="GDScript" id="GDScript_nu0nl"]
-script/source = "extends RigidBody3D
-
-
-
-
-func _on_mouse_entered() -> void:
-	print(\"test\")
-
-
-#func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	#print(\"input event\")
-"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5m4hp"]
 
@@ -59,7 +46,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.33327, 0)
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08418, 1, 5.06247)
 mass = 0.2
-script = SubResource("GDScript_nu0nl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_5m4hp")
@@ -81,23 +67,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73567, 0.650289, 5.35564)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48734, 1, 2)
 connected_button = NodePath("../ANDGate")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="LeverDoor" parent="." instance=ExtResource("2_wbrql")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.97612, 1.29286, 2)
+script = ExtResource("8_fwtbc")
 
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="TextureRect" type="TextureRect" parent="Control/CenterContainer"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-texture = ExtResource("8_upwpi")
-expand_mode = 1
-script = ExtResource("9_jg6p2")
+[node name="HUD" parent="." instance=ExtResource("8_g2pko")]
 
 [node name="Lever" parent="." instance=ExtResource("10_xic11")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -3.81724, 1.4281, 2.10509)
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 4.65009, 0.516047, 2.10509)
+script = ExtResource("10_q5vk1")
+
+[connection signal="toggled" from="Lever" to="LeverDoor" method="_on_lever_toggled"]

@@ -16,7 +16,7 @@ func execute() -> void:
 	
 	# Play the animation according to the state the lever is in
 	if not current_state:
-		animation_player.play("lever_down") 
+		animation_player.play("lever_down")
 	else: 
 		animation_player.play_backwards("lever_down")
 	# Change the state of the lever

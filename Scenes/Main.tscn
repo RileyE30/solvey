@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" path="res://Scenes/timed_button.tscn" id="6_qblcy"]
 [ext_resource type="Script" path="res://scripts/LeverDoor.gd" id="8_fwtbc"]
 [ext_resource type="PackedScene" uid="uid://d0178x6xyxo0t" path="res://Scenes/HUD.tscn" id="8_g2pko"]
-[ext_resource type="Script" path="res://scripts/InteractableLever.gd" id="10_q5vk1"]
-[ext_resource type="PackedScene" uid="uid://dr2tw2cyre6kg" path="res://Scenes/lever.tscn" id="10_xic11"]
+[ext_resource type="Script" path="res://scripts/interactables/InteractableLever.gd" id="10_q5vk1"]
+[ext_resource type="PackedScene" uid="uid://dr2tw2cyre6kg" path="res://Scenes/Lever.tscn" id="10_xic11"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_knu02"]
 size = Vector3(22, 1, 33)

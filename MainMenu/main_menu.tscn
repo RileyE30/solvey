@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3kqimaeb1l5f"]
+
+[ext_resource type="Script" path="res://MainMenu/main_menu.gd" id="1_inhkx"]
+[ext_resource type="Texture2D" uid="uid://dc0u35qf8i5xu" path="res://assets/background/Solvey Seas (1).png" id="1_lcwj5"]
+[ext_resource type="FontFile" uid="uid://c48wr4to6i62d" path="res://assets/fonts/SuperBubbly-G35nA.ttf" id="2_3kq0f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inkhe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5l0s2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0sm4a"]
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_inhkx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_lcwj5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0.130424, 0.395055, 1, 1)
+self_modulate = Color(0.95158, 0.95158, 0.95158, 1)
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3kq0f")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_inkhe")
+text = "START GAME"
+flat = true
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0.130424, 0.395055, 1, 1)
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3kq0f")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5l0s2")
+text = "SETTINGS"
+flat = true
+
+[node name="ExitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0.130424, 0.395055, 1, 1)
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3kq0f")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0sm4a")
+text = "EXIT"
+flat = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

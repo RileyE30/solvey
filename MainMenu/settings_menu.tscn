@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://dixnum5a0bf02"]
+
+[ext_resource type="Texture2D" uid="uid://ci3bkdnoiomxm" path="res://assets/background/Solvey Seas (2).png" id="1_1j041"]
+[ext_resource type="Script" path="res://MainMenu/settings_menu.gd" id="1_xhxw6"]
+[ext_resource type="FontFile" uid="uid://c48wr4to6i62d" path="res://assets/fonts/SuperBubbly-G35nA.ttf" id="3_7il2g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_23pjx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plfbi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4outc"]
+
+[node name="Settings_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhxw6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1j041")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 105
+alignment = 1
+
+[node name="VolumeButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0.130424, 0.395055, 1, 1)
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7il2g")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_23pjx")
+text = "VOLUME"
+flat = true
+
+[node name="ResButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0.130424, 0.395055, 1, 1)
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7il2g")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plfbi")
+text = "RESOLUTION"
+flat = true
+
+[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0.130424, 0.395055, 1, 1)
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7il2g")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4outc")
+text = "BACK"
+flat = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

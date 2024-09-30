@@ -44,6 +44,19 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	# When the player presses the "interact" button
+	if Input.is_action_just_pressed("interact"):
+		# Get the object the RayCast is colliding with
+		var cast = self.get_node("Head/RayCast3D")
+		var collidingObject = cast.get_collider()
+		# If the RayCast is colliding with some object
+		# And that object has property "interactable"
+		# And that "interactable" property is set to true
+		if collidingObject and ("interactable" in collidingObject) and collidingObject.interactable:
+			# Call the execute() function in the object's script
+			collidingObject.call("execute")
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

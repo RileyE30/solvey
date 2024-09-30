@@ -32,17 +32,6 @@ func _input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 
-func _process(delta: float) -> void:
-	# When the "Esc" key is pressed
-	if (Input.is_action_just_pressed("ui_cancel")):
-		# Toggle mouse capture mode
-		if (mouse_mode == Input.MOUSE_MODE_CAPTURED):
-			mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			mouse_mode = Input.MOUSE_MODE_CAPTURED
-		Input.set_mouse_mode(mouse_mode)
-
-
 func _physics_process(delta: float) -> void:
 	
 	# When the player presses the "interact" button

@@ -1,0 +1,154 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8h00mq37j6y8"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_1abxr"]
+[ext_resource type="Shader" path="res://Shaders/pause_menu.gdshader" id="1_mrgs1"]
+[ext_resource type="FontFile" uid="uid://c48wr4to6i62d" path="res://assets/fonts/SuperBubbly-G35nA.ttf" id="2_dixqv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbput"]
+shader = ExtResource("1_mrgs1")
+shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ulyob"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yel7g"]
+
+[sub_resource type="Animation" id="Animation_p1gm0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1gnxk"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.935]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8yos"]
+_data = {
+"RESET": SubResource("Animation_p1gm0"),
+"blur": SubResource("Animation_1gnxk")
+}
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1abxr")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_lbput")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 85
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0.129412, 0.396078, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_dixqv")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ulyob")
+text = "CONTINUE"
+flat = true
+
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
+modulate = Color(0.129412, 0.396078, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_dixqv")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ulyob")
+text = "RESTART"
+flat = true
+
+[node name="GiveUp" type="Button" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0.129412, 0.396078, 1, 1)
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_dixqv")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yel7g")
+text = "GIVE UP"
+flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t8yos")
+}
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="visibility_changed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GiveUp" to="." method="_on_give_up_pressed"]

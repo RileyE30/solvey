@@ -32,18 +32,20 @@ func _input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 
-func _process(delta: float) -> void:
-	# When the "Esc" key is pressed
-	if (Input.is_action_just_pressed("ui_cancel")):
-		# Toggle mouse capture mode
-		if (mouse_mode == Input.MOUSE_MODE_CAPTURED):
-			mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			mouse_mode = Input.MOUSE_MODE_CAPTURED
-		Input.set_mouse_mode(mouse_mode)
-
-
 func _physics_process(delta: float) -> void:
+	
+	# When the player presses the "interact" button
+	if Input.is_action_just_pressed("interact"):
+		# Get the object the RayCast is colliding with
+		var cast = self.get_node("Head/RayCast3D")
+		var collidingObject = cast.get_collider()
+		# If the RayCast is colliding with some object
+		# And that object has property "interactable"
+		# And that "interactable" property is set to true
+		if collidingObject and ("interactable" in collidingObject) and collidingObject.interactable:
+			# Call the execute() function in the object's script
+			collidingObject.call("execute")
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

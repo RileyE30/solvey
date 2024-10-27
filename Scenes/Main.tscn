@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c61q04ltjst3e"]
+[gd_scene load_steps=13 format=3 uid="uid://c61q04ltjst3e"]
 
 [ext_resource type="PackedScene" uid="uid://b2pduacqa5chb" path="res://Scenes/floor_button.tscn" id="1_elu03"]
 [ext_resource type="PackedScene" uid="uid://chu3w3ioc6jvo" path="res://Scenes/characters/MainCharacter.tscn" id="1_jhwud"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfui2hjydd0i0" path="res://Scenes/OceanMap.tscn" id="3_5qnfl"]
 [ext_resource type="PackedScene" uid="uid://c1kc5aw3squq" path="res://Scenes/and_gate.tscn" id="5_eprmo"]
 [ext_resource type="PackedScene" uid="uid://dl6litnlhpi6y" path="res://Scenes/timed_button.tscn" id="6_qblcy"]
+[ext_resource type="PackedScene" uid="uid://b8h00mq37j6y8" path="res://Scenes/pause_menu.tscn" id="8_2uu4b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_knu02"]
 size = Vector3(22, 1, 33)
@@ -62,3 +63,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73567, 0.650289, 5.35564)
 [node name="Door" parent="." instance=ExtResource("2_wbrql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48734, 1, 2)
 connected_button = NodePath("../ANDGate")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_2uu4b")]
